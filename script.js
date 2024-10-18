@@ -1,19 +1,23 @@
 // Timer
 
+let time = 30;
+let score = 0;
+
 document.getElementById("start").addEventListener("click", () => {
     document.getElementById("start").innerText = "GAME ONGOING";
 
-    let remaining = parseInt(document.getElementById("timer").innerText);
+    let remaining = time;
+    document.getElementById("timer").innerText = `Timer: ${remaining}`;
+    document.getElementById("score").innerText = `Score: ${score}`;
     let timer = setInterval(function () {
         if (remaining > 0) {
             remaining--;
-            document.getElementById("timer").innerText = remaining;
+            document.getElementById("timer").innerText = `Timer: ${remaining}`;
             spawnTarget();
         } else {
             clearInterval(timer);
             document.getElementById("start").innerText = "GAME FINISHED";
         }
-
     }, 1000);
 
 });
@@ -30,4 +34,10 @@ function spawnTarget() {
     target.style.top = `${Math.random() * 80 + 10}vh`;
     target.id = "target"
     document.body.appendChild(target);
+    target.addEventListener("click", () => {
+        document.getElementById("target").remove();
+        score++;
+        document.getElementById("score").innerText = `Score: ${score}`;
+    })
+
 }
