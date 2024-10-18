@@ -1,6 +1,11 @@
 // Timer
 
-let time = 30;
+let time = 0;
+
+document.getElementById("submit-time").addEventListener("click", () => {
+    time = document.getElementById("custom-time").value;
+});
+
 let score = 0;
 
 document.getElementById("start").addEventListener("click", () => {
@@ -16,7 +21,7 @@ document.getElementById("start").addEventListener("click", () => {
             spawnTarget();
         } else {
             clearInterval(timer);
-            document.getElementById("start").innerText = "GAME FINISHED";
+            document.getElementById("start").innerText = "RESTART";
         }
     }, 1000);
 
@@ -25,7 +30,7 @@ document.getElementById("start").addEventListener("click", () => {
 // spawn targets
 
 function spawnTarget() {
-    if(!! document.getElementById("target")) document.getElementById("target").remove();
+    if (!!document.getElementById("target")) document.getElementById("target").remove();
     const target = document.createElement("button");
     target.style.height = "100px"
     target.style.width = "100px"
