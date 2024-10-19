@@ -1,12 +1,10 @@
 // Timer
 
-let time = 0;
+let time = 0, score = 0, highscore = 0, count = 0;
 
-document.getElementById("submit-time").addEventListener("click", () => {
+document.getElementById("custom-time").addEventListener("change", () => {
     time = document.getElementById("custom-time").value;
 });
-
-let score = 0;
 
 document.getElementById("start").addEventListener("click", () => {
     document.getElementById("start").innerText = "GAME ONGOING";
@@ -16,12 +14,17 @@ document.getElementById("start").addEventListener("click", () => {
     document.getElementById("score").innerText = `Score: ${score}`;
     let timer = setInterval(function () {
         if (remaining > 0) {
-            remaining--;
-            document.getElementById("timer").innerText = `Timer: ${remaining}`;
             spawnTarget();
+            document.getElementById("timer").innerText = `Timer: ${--remaining}`;
         } else {
             clearInterval(timer);
+            removeTarget();
             document.getElementById("start").innerText = "RESTART";
+            if (score >= highscore) {
+                highscore = score;
+                document.getElementById("highscore").innerText = `Highscore: ${highscore}`;
+            }
+            score = 0, count = 0;
         }
     }, 1000);
 
@@ -30,19 +33,23 @@ document.getElementById("start").addEventListener("click", () => {
 // spawn targets
 
 function spawnTarget() {
-    if (!!document.getElementById("target")) document.getElementById("target").remove();
+    removeTarget();
     const target = document.createElement("button");
-    target.style.height = "100px"
-    target.style.width = "100px"
-    target.style.position = "absolute";
+    target.id = "target"
     target.style.left = `${Math.random() * 80 + 10}vw`;
     target.style.top = `${Math.random() * 80 + 10}vh`;
-    target.id = "target"
     document.body.appendChild(target);
+    
     target.addEventListener("click", () => {
         document.getElementById("target").remove();
-        score++;
-        document.getElementById("score").innerText = `Score: ${score}`;
+        document.getElementById("score").innerText = `Score: ${++score}`;
+        document.getElementById("accuracy").innerText = `Accuracy: ${score}/${++count} - ${Math.round(score/count * 100)}%`
     })
+}
 
+function removeTarget() {
+    if (!!document.getElementById("target")) {
+        document.getElementById("target").remove();
+        document.getElementById("accuracy").innerText = `Accuracy: ${score}/${++count} - ${Math.round(score/count * 100)}%`;
+    }
 }
