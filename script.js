@@ -32,12 +32,19 @@ document.getElementById("start").addEventListener("click", () => {
 
 // spawn targets
 
+let color = ""
+
+document.getElementById("custom-color").addEventListener("change", () => {
+    color = document.getElementById("custom-color").value;
+});
+
 function spawnTarget() {
     removeTarget();
     const target = document.createElement("button");
     target.id = "target"
     target.style.left = `${Math.random() * 80 + 10}vw`;
     target.style.top = `${Math.random() * 80 + 10}vh`;
+    target.style.backgroundColor = color;
     document.body.appendChild(target);
     
     target.addEventListener("click", () => {
