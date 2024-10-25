@@ -11,10 +11,10 @@
 }
 
 @keyframes fadeIn {
-    0% {opacity: 0;}
-    20% {opacity: 1;}
-    80% {opacity: 1;}
-    100% {opacity: 0;}
+    0% {opacity: 0; height: 50px, width 50px}
+    20% {opacity: 1;  height: 100px, width 100px}
+    80% {opacity: 1;  height: 100px, width 100px}
+    100% {opacity: 0;  height: 50px, width 50px}
 }
 
 #console {
