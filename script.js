@@ -28,7 +28,10 @@ document.getElementById("start").addEventListener("click", () => {
     validatingOS();
 });
 
+
+//What to do when the game starts
 function startListenerAfterLoading() {
+    
     document.getElementById("gameStatus").innerText = "STATUS:  MISSION ONGOING";
 
     gameArea();
@@ -57,9 +60,11 @@ function startListenerAfterLoading() {
 
 }
 
+//Define the game area to play within and spawn targets within
 function gameArea() {
     document.getElementById("gameArea").style.visibility = "visible";
     document.getElementById("mouseTarget").style.visibility = "visible";
+    //is the height or width smaller
     limiter = Math.min(window.innerWidth - consoleWidth - 70, window.innerHeight);
     gameX = limiter * 0.9;
     const gameArea = document.getElementById("gameArea");
@@ -88,7 +93,7 @@ function resetTarget() {
     topTarget = Math.random() * 90;
 }
 
-
+//Creats the target
 function spawnTarget() {
     removeTarget();
     const target = document.createElement("button");
@@ -96,13 +101,16 @@ function spawnTarget() {
 
     target.id = "target"
     resetTarget();
+    //Give some positions
     target.style.position = "absolute";
     target.style.left = `${leftTarget}%`;
     target.style.top = `${topTarget}%`;
     target.style.backgroundColor = color;
     document.getElementById("gameArea").appendChild(target);
 
+    //Function to remove a target
     target.addEventListener("click", () => {
+        //Creat a particle system
         splatter();
         document.getElementById("target").remove();
         document.getElementById("score").innerText = `SCORE: ${++score}`;
@@ -110,6 +118,7 @@ function spawnTarget() {
     })
 }
 
+//Removes the target
 function removeTarget() {
     if (!!document.getElementById("target")) {
         document.getElementById("target").remove();
@@ -117,16 +126,21 @@ function removeTarget() {
     }
 }
 
+
+//The function below creats the particle system
+
 function splatter() {
     let splatterTimer = Math.random() * 4 + 2;
     let splatNumber = Math.ceil(Math.random() * 5) + 2;
 
+    //Creating some arrays
     let dotList = [];
     let splatMag = [];
     let splatDir = [];
 
     for (let i = 0; i < splatNumber; i++) {
 
+        //Creats a bunch of particles and gives them some style
         dotList[i] = document.createElement("div");
         dotList[i].style.position = "absolute";
         dotList[i].style.left = `${leftTarget - ((document.getElementById("target").style.width * 100) / (2 * window.innerWidth))}vw`;
@@ -145,12 +159,14 @@ function splatter() {
 
     let elapsed = 0;
 
+    //Saving some values before a new target is created
     let leftSaved = leftTarget - ((document.getElementById("target").style.width * 100) / (2 * window.innerWidth));
     let topSaved = topTarget - ((document.getElementById("target").style.height * 100) / (2 * window.innerHeight));
     let opacityValue = 1;
     let elapsedInterval = 50;
 
     let splatTimer = setInterval(function () {
+        //Function to move the particles
         elapsed += elapsedInterval;
 
         if (splatterTimer * 1000 > elapsed) {
@@ -159,6 +175,8 @@ function splatter() {
 
                 //let leftSaved = dotList[i].style.left;
                 //let topSaved = dotList[i].style.top;
+
+                //This moves each object depending on how much time has elapsed. It divides a vector in to x and y componants and multiplies them by a magnitude.
                 dotList[i].style.left = `${leftSaved + ((elapsed / 30) * splatMag[i] * Math.cos(splatDir[i]))}%`;
                 dotList[i].style.top = `${topSaved + ((elapsed / 30) * splatMag[i] * Math.sin(splatDir[i]))}%`;
                 dotList[i].style.opacity = `${opacityValue}`;
@@ -178,6 +196,9 @@ function splatter() {
     }, 50);
 }
 
+
+//Validating the OS function
+
 function validatingOS() {
     let symbols = ["|", "/", "-", "\\", "|", "/", "-", "\\", "|", "|"];
     let i = 0;
@@ -186,10 +207,15 @@ function validatingOS() {
         i++;
         if (i > symbols.length) {
             clearInterval(OSTimer);
+
+            //Then runs the eating Banana function
+            
             eatingBanana();
         }
     }, 200);
 }
+
+//This function tuns the eating of the Banana piece
 
 function eatingBanana() {
 
@@ -200,6 +226,9 @@ function eatingBanana() {
         progress++;
         if (progress > 100) {
             clearInterval(bananaTimer);
+
+            //Then runs the remainder of the starting of the game function
+            
             startListenerAfterLoading()
         }
     }, 20);
@@ -207,6 +236,9 @@ function eatingBanana() {
 }
 
 const mouseTarg = document.getElementById("mouseTarget");
+
+
+//The below functions are for the target around the mouse
 
 window.addEventListener('mousemove', (event) => {
     mouseTarg.style.left = `${event.clientX - 50}px`;
