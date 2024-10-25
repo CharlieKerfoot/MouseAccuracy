@@ -2,4 +2,136 @@
     height: 100px;
     width: 100px; 
     position: absolute;
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 7px;
+    border-color: rgb(0, 0, 0);
+    animation-name: fadeIn;
+    animation-duration: 1s;
 }
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    80% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+#console {
+    border-style: solid;
+    border-radius: 5%;
+    border-width: 7px;
+    border-color: rgb(161, 152, 152);
+    background-color: gray;
+    padding: 10px;
+    /* Set inside Javascript */
+    width: 0px;
+}
+
+#screen, input {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 7px;
+    margin-right: 7px;
+
+    padding: 10px;
+
+    border-style: solid;
+    border-radius: 5%;
+    border-width: 5px;
+    border-color: rgb(93, 94, 93);
+    background-color: black; 
+    font-weight: bold;
+    font-family: "Roboto Mono", 'Courier New', Courier, monospace;
+    color: greenyellow;
+    font-size: large;
+}
+
+#start {
+    width: 200px;
+    height: 100px;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 15%;
+    border-color: black;
+    background-color: red;
+    color: yellow;
+    font-size: 50px;
+    font-weight: bold;
+    
+    
+}
+
+body {
+    font-weight: bold;
+    font-family: "Roboto Mono", 'Courier New', Courier, monospace;
+    color: greenyellow;
+    font-size: large;
+}
+
+#gameArea {
+    background-color: rgb(207, 220, 137);
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 7%;
+    border-color: rgb(246, 7, 7);
+    width: 0;
+    height: 0;
+}
+
+/* canvas {
+    height: 100px;
+    width: 100px; 
+    position: absolute;
+    border-style: solid;
+    border-width: 7px;
+    border-color: rgb(30, 226, 53);
+} */
+
+#mouseTarget {
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+#horizLine1 {
+    top: 47px;
+    left: 6px;
+    height: 0px;
+    width: 30px; 
+    position: absolute;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(30, 226, 53);
+}
+#vertLine1 {
+    left: 47px;
+    top: 6px;
+    height: 30px;
+    width: 0px; 
+    position: absolute;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(30, 226, 53);
+}
+#horizLine2 {
+    top: 47px;
+    left: 56px;
+    height: 0px;
+    width: 30px; 
+    position: absolute;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(30, 226, 53);
+}
+#vertLine2 {
+    left: 47px;
+    top: 56px;
+    height: 30px;
+    width: 0px; 
+    position: absolute;
+    border-style: solid;
+    border-width: 2px;
+    color: rgb(30, 226, 53);
+}
+
