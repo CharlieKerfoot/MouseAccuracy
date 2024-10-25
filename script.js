@@ -121,8 +121,6 @@ function splatter() {
     let splatterTimer = Math.random() * 4 + 2;
     let splatNumber = Math.ceil(Math.random() * 5) + 2;
 
-
-
     let dotList = [];
     let splatMag = [];
     let splatDir = [];
