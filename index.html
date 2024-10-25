@@ -8,28 +8,52 @@
     <title> Mouse Accuracy Game </title>
     <script defer src="script.js"> </script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
 <body>
 
     <!-- Start Game -->
 
-    <button type="button" id="start">START</button>
+    <div id="console">
 
-    <br><br>
-    <label for="custom-time">Custom Time:</label>
-    <input type="text" id="custom-time" />
-    <br>
+        <button type="button" id="start">START</button>
+        <br><br>
+        <label for="custom-time">CUSTOM TIME:</label>
+        <input type="text" id="custom-time" />
+        <br>
 
-    <br>
-    <label for="custom-color">Custom Color:</label>
-    <input type="text" id="custom-color" />
-    <br>
+        <br>
+        <label for="custom-color">CUSTOM COLOR:</label>
+        <input type="text" id="custom-color" />
+        <br>
+        <br>
 
-    <p id="timer">Timer: --</p>
-    <p id="score">Score: --</p>
-    <p id="accuracy">Accuracy: --/--</p>
-    <p id="highscore">Highscore: --</p>
+        <div id="screen">
+            <p id="gameStatus">STATUS: --</p>
+            <p id="timer">TIMER: --</p>
+            <p id="score">SCORE: --</p>
+            <p id="accuracy">ACCURACY: --/--</p>
+            <p id="highscore">HIGHSCORE: --</p>
+            <p>YOU CAN RESIZE YOUR WINDOW AND THE GAME SCREEN WILL RESIZE ACCORDINGLY</p>
+        </div>
+
+    </div>
+
+
+
+    <div id="gameArea">
+
+    </div>
+
+    <div id="mouseTarget">
+        <!-- <canvas id="aim"></canvas> -->
+        <div id="horizLine1"></div>
+        <div id="vertLine1"></div>
+        <div id="horizLine2"></div>
+        <div id="vertLine2"></div>
+    </div>
+
     <!-- Targets Appear -->
 
 
